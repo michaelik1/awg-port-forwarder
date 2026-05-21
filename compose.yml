@@ -1,0 +1,21 @@
+services:
+  amneziawg:
+    build: .
+    image: amneziawg-custom
+    container_name: amneziawg
+    ports:
+      - "44000:44000/udp"
+      - "25570:25570/tcp"
+      - "25571:25571/tcp"
+      - "222:222/tcp"
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.ip_forward=1
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./wg0.conf:/etc/amnezia/wg0.conf
+      - ./startup.sh:/etc/amnezia/startup.sh
+    command: bash /etc/amnezia/startup.sh
+    restart: unless-stopped
