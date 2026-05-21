@@ -1,5 +1,5 @@
 FROM amneziavpn/amneziawg-go:latest
-LABEL authors="michaelik"
+LABEL authors="michaelik1"
 
 WORKDIR /workdir
 
